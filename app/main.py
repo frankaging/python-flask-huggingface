@@ -26,12 +26,14 @@ def root():
 @app.route('/tweet', methods=['POST'])
 def createTweet():
     print(request)
-    content = request.json['content']
-    hasil = pipe(content)
-    tweet = {'content': content,'date': request.json['date'], 'id':    request.json['id'], 'sentiment': hasil[0]['label'], 'details': hasil[0]}
-    ret = jsonify({'data': tweet})
-    ret.headers.add('Access-Control-Allow-Origin', '*')
-    return ret
+    # content = request.json['content']
+    # hasil = pipe(content)
+    # tweet = {'content': content,'date': request.json['date'], 'id':    request.json['id'], 'sentiment': hasil[0]['label'], 'details': hasil[0]}
+    # ret = jsonify({'data': tweet})
+    # ret.headers.add('Access-Control-Allow-Origin', '*')
+    response = jsonify({'Hello World!': 'You Got In!'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
