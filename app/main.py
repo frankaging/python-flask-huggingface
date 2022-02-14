@@ -26,7 +26,7 @@ def root():
 @app.route('/tweet', methods=['POST'])
 def createTweet():
     print("requesting data: ", request.json)
-    content = request.json['content']
+    content = request.json['mse']
     hasil = pipe(content)
     tweet = {'content': content, 'sentiment': hasil[0]['label'], 'details': hasil[0]}
     ret = jsonify({'data': tweet})
