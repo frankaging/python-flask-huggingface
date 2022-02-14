@@ -1,26 +1,27 @@
 import datetime
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS, cross_origin
+
 # import objects from the Flask model
 # from keras.models import load_model
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TextClassificationPipeline
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
 model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
 pipe = TextClassificationPipeline(model=model, tokenizer=tokenizer)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def root():
     # For the sake of example, use static information to inflate the template.
     # This will be replaced with real information in later steps.
-    dummy_times = [datetime.datetime(2018, 1, 1, 10, 0, 0),
-                   datetime.datetime(2018, 1, 2, 10, 30, 0),
-                   datetime.datetime(2018, 1, 3, 11, 0, 0),
-                   ]
-
-    return render_template('index.html', times=dummy_times)
+    response = flask.jsonify({'Hello World!': 'You Got In!'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/tweet', methods=['POST'])
 def createTweet():
