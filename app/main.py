@@ -19,7 +19,7 @@ pipe = TextClassificationPipeline(model=model, tokenizer=tokenizer)
 def root():
     # For the sake of example, use static information to inflate the template.
     # This will be replaced with real information in later steps.
-    response = flask.jsonify({'Hello World!': 'You Got In!'})
+    response = jsonify({'Hello World!': 'You Got In!'})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
