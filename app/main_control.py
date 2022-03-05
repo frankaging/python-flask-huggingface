@@ -15,11 +15,11 @@ model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-unca
 pipe = TextClassificationPipeline(model=model, tokenizer=tokenizer)
 
 goemotions_tokenizer = AutoTokenizer.from_pretrained(
-    "joeddav/distilbert-base-uncased-go-emotions-student",
+    "monologg/bert-base-cased-goemotions-original",
     cache_dir = "../../huggingface_cache/"
 )
 goemotions_model = AutoModelForSequenceClassification.from_pretrained(
-    "joeddav/distilbert-base-uncased-go-emotions-student",
+    "monologg/bert-base-cased-goemotions-original",
     cache_dir = "../../huggingface_cache/"
 )
 goemotions_pipe = TextClassificationPipeline(model=goemotions_model, tokenizer=goemotions_tokenizer)
